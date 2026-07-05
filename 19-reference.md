@@ -83,6 +83,7 @@ list. In the filter rail's **Links** section these are grouped under friendly la
 | `checks-policy` | Code / a route checks a policy (for a model) | Policy checks |
 | `observes` | An observer watches a model | Observes |
 | `broadcasts-on` | A channel authorizes against a model | Broadcasts on |
+| `broadcasts` | An event broadcasts on a channel | Broadcasts |
 | `foreign-key` | A table references another via a foreign key | Foreign keys |
 | `extends` | A class extends another | Extends |
 | `implements` | A class implements an interface | Implements |
