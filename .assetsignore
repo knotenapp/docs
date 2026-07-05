@@ -1,0 +1,9 @@
+# Tooling/config files that should not be published as part of the docs site.
+# (The .md content, manifest.json, assets/, LICENSE and 404.html ARE published.)
+wrangler.jsonc
+.assetsignore
+.git
+.gitignore
+.editorconfig
+.nojekyll
+cspell.json

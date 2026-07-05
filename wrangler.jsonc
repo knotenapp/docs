@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers static-assets config for the Knoten docs site.
+  //
+  // It serves this folder as static files and, for any path that isn't a real
+  // file (e.g. /introduction, /reference), falls back to index.html so the
+  // client-side router can render it. This is Cloudflare's native replacement
+  // for a "_redirects" SPA rule — which Cloudflare rejects with an
+  // "infinite loop" error because it canonicalises /index.html to /.
+  "name": "docs",
+  "compatibility_date": "2025-06-01",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "single-page-application"
+  }
+}
