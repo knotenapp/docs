@@ -1,0 +1,63 @@
+{
+  "title": "Knoten Documentation",
+  "description": "How to use and understand Knoten — the static architecture and database visualiser for Laravel projects.",
+  "version": "1.0.0",
+  "home": { "title": "Overview", "slug": "index", "file": "README.md" },
+  "linkRule": "A file's route/slug is its filename with the leading 'NN-' prefix and the '.md' extension removed (e.g. '03-opening-projects.md' -> 'opening-projects'). Rewrite relative in-body '*.md' links the same way. README.md is the home page (slug 'index').",
+  "sections": [
+    {
+      "title": "Getting Started",
+      "slug": "getting-started",
+      "description": "What Knoten is, and how to get it running.",
+      "items": [
+        { "title": "Introduction & Concepts", "slug": "introduction", "file": "01-introduction.md", "description": "What Knoten is, and the graph model — nodes, edges, and confidence." },
+        { "title": "Installation & Setup", "slug": "installation", "file": "02-installation.md", "description": "Running the web app, the desktop app, and the requirements for each." },
+        { "title": "Opening a Project", "slug": "opening-projects", "file": "03-opening-projects.md", "description": "The welcome screen, the open dialog, recents, multiple roots, excludes, and rescanning." }
+      ]
+    },
+    {
+      "title": "Using the App",
+      "slug": "using-the-app",
+      "description": "Reading, navigating, and interrogating the architecture map.",
+      "items": [
+        { "title": "Reading the Graph", "slug": "reading-the-graph", "file": "04-reading-the-graph.md", "description": "The canvas — node cards, edges, colours, groups, and the confidence cues." },
+        { "title": "Filtering & Navigating", "slug": "filtering-and-navigating", "file": "05-filtering-and-navigating.md", "description": "The filter rail: search, layers, groups, links, heatmaps, orphans, and density." },
+        { "title": "The Details Panel", "slug": "details-panel", "file": "06-details-panel.md", "description": "The node inspector, plain-language summaries, metrics, flags, insights, and legend." },
+        { "title": "Traces", "slug": "traces", "file": "07-traces.md", "description": "Request, dependency, impact, relationship, authorization, and connection-path traces." },
+        { "title": "Method Flow", "slug": "method-flow", "file": "08-method-flow.md", "description": "Drilling into a class to read each method as plain-language, branch-aware steps." },
+        { "title": "Contexts & Notes", "slug": "contexts-and-notes", "file": "09-contexts-and-notes.md", "description": "Drawing your own boundaries and pinning sticky notes onto the map." },
+        { "title": "Exporting", "slug": "exporting", "file": "10-exporting.md", "description": "Saving the graph as a PNG image or as the full JSON data contract." }
+      ]
+    },
+    {
+      "title": "Enforcing Architecture",
+      "slug": "enforcing-architecture",
+      "description": "Turning the map into rules you can check and gate merges on.",
+      "items": [
+        { "title": "Architecture Rules", "slug": "architecture-rules", "file": "11-architecture-rules.md", "description": "The knoten.php rules file — node selectors, edge and confidence filters." },
+        { "title": "Rule Presets", "slug": "rule-presets", "file": "12-rule-presets.md", "description": "Bundled boundary sets, and enabling or copying them from the UI or CLI." },
+        { "title": "Checking & CI", "slug": "checking-and-ci", "file": "13-checking-and-ci.md", "description": "Running checks in the app, scaffolding a CI gate, and failing a build on violations." }
+      ]
+    },
+    {
+      "title": "Going Deeper",
+      "slug": "going-deeper",
+      "description": "Schema sources, the command line, the desktop build, configuration, and internals.",
+      "items": [
+        { "title": "Database Schema", "slug": "database-schema", "file": "14-database-schema.md", "description": "Migration replay vs. reading the live database, and schema drift." },
+        { "title": "Command Line", "slug": "cli-commands", "file": "15-cli-commands.md", "description": "The knoten:scan, knoten:check, and knoten:preset Artisan commands." },
+        { "title": "Desktop App", "slug": "desktop-app", "file": "16-desktop-app.md", "description": "Native features, native menus, and building installers." },
+        { "title": "Configuration", "slug": "configuration", "file": "17-configuration.md", "description": "config/knoten.php, environment variables, preferences, and stored state." },
+        { "title": "How Analysis Works", "slug": "how-it-works", "file": "18-how-it-works.md", "description": "The scan pipeline, the extractors, caching, and why confidence exists." }
+      ]
+    },
+    {
+      "title": "Reference",
+      "slug": "reference",
+      "description": "The exhaustive catalogues and glossary.",
+      "items": [
+        { "title": "Reference", "slug": "reference", "file": "19-reference.md", "description": "Every node kind and edge kind, the exported JSON shape, and a glossary." }
+      ]
+    }
+  ]
+}
