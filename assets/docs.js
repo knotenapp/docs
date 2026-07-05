@@ -7,10 +7,21 @@
   "use strict";
 
   /* --- config ------------------------------------------------------------ */
-  // Content + assets are served from the site root (a `docs.` subdomain).
-  const ROOT = "";
+  // Derive the base path from where THIS script is served, so the site works
+  // whether it's hosted at a domain root (docs.knoten.dev/) or a subpath
+  // (e.g. knotenapp.github.io/docs/). Content + assets sit next to it.
+  const SCRIPT_SRC =
+    (document.currentScript && document.currentScript.src) ||
+    (function () {
+      const s = Array.prototype.slice
+        .call(document.getElementsByTagName("script"))
+        .find((n) => /docs\.js(\?|$)/.test(n.src || ""));
+      return s ? s.src : location.href;
+    })();
+  // e.g. "/", or "/docs/". Always ends with a slash.
+  const BASE = new URL(".", SCRIPT_SRC).pathname.replace(/assets\/?$/, "");
   // TODO: set to the docs content repo to enable the "Edit this page" link,
-  // e.g. "https://github.com/williamug/knoten-docs/edit/main/". Empty = hidden.
+  // e.g. "https://github.com/knotenapp/docs/edit/main/". Empty = hidden.
   const GITHUB_EDIT_BASE = "";
 
   /* --- state ------------------------------------------------------------- */
@@ -44,8 +55,9 @@
     initTheme();
     wireChrome();
     try {
-      manifest = await fetchJSON(ROOT + "manifest.json");
+      manifest = await fetchJSON(BASE + "manifest.json");
     } catch (e) {
+      if (location.protocol === "file:") return renderFileProtocolHelp();
       return renderError("Couldn't load the documentation index.");
     }
     buildSidebar();
@@ -68,12 +80,14 @@
 
   /* --- routing ----------------------------------------------------------- */
   function pathToSlug(pathname) {
-    let p = decodeURIComponent(pathname).replace(/\/+$/, "");
-    if (p === "" || p === "/") return "index";
+    let p = decodeURIComponent(pathname);
+    if (BASE !== "/" && p.indexOf(BASE) === 0) p = p.slice(BASE.length);
+    p = p.replace(/^\/+/, "").replace(/\/+$/, "");
+    if (p === "") return "index";
     return p.split("/").pop();
   }
   function slugToPath(slug) {
-    return slug === "index" ? "/" : "/" + slug;
+    return BASE + (slug === "index" ? "" : slug);
   }
 
   function navigate(slug, push, hash) {
@@ -143,7 +157,7 @@
 
     let md;
     try {
-      md = await fetchText(ROOT + page.file);
+      md = await fetchText(BASE + page.file);
     } catch (e) {
       return renderError("Couldn't load “" + page.title + "”.");
     }
@@ -402,13 +416,28 @@
     $("#content").innerHTML =
       '<div class="content-inner error-state"><h1>⚠</h1><p>' +
       esc(msg) +
-      '</p><a class="btn" href="/">Back to overview</a></div>';
+      '</p><a class="btn" href="' + BASE + '">Back to overview</a></div>';
+  }
+
+  // Shown when the site is opened as a file:// page, where browsers block
+  // fetching local files. Turns the dead-end into copy-paste instructions.
+  function renderFileProtocolHelp() {
+    var dir = decodeURIComponent(location.pathname).replace(/\/[^/]*$/, "");
+    $("#content").innerHTML =
+      '<div class="content-inner error-state">' +
+      "<h1>Run a local server</h1>" +
+      '<p style="max-width:560px;margin:0 auto">Opening the docs as a file won’t work — your browser blocks a local page from reading other local files. Start a tiny web server, then open the address it prints:</p>' +
+      '<pre style="text-align:left;max-width:560px;margin:20px auto"><code>cd ' +
+      esc(dir) +
+      "\npython3 -m http.server 8080</code></pre>" +
+      "<p><strong>Then open http://localhost:8080 in your browser</strong> — do not open the file path. This only affects local preview; on knoten.dev it works normally.</p>" +
+      "</div>";
   }
   function renderNotFound() {
     setActiveNav(null);
     $("#content").innerHTML =
       '<div class="content-inner error-state"><h1>404</h1><p>That page doesn’t exist.</p>' +
-      '<a class="btn" href="/">Back to overview</a></div>';
+      '<a class="btn" href="' + BASE + '">Back to overview</a></div>';
     const a = $("#content .btn");
     a.addEventListener("click", (e) => {
       e.preventDefault();
@@ -432,6 +461,16 @@
 
   /* --- chrome wiring ----------------------------------------------------- */
   function wireChrome() {
+    // Point the brand/logo at the docs home (base-aware, not a bare "/").
+    const brand = document.querySelector(".brand");
+    if (brand) {
+      brand.setAttribute("href", slugToPath("index"));
+      brand.addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey) return;
+        e.preventDefault();
+        navigate("index", true);
+      });
+    }
     $("#themeToggle").addEventListener("click", toggleTheme);
     $("#menuBtn").addEventListener("click", toggleSidebar);
     $("#scrim").addEventListener("click", closeSidebar);
@@ -498,7 +537,7 @@
         let text = "",
           headings = [];
         try {
-          const md = stripFrontmatter(await fetchText(ROOT + p.file));
+          const md = stripFrontmatter(await fetchText(BASE + p.file));
           headings = (md.match(/^#{1,4}\s+.+$/gm) || []).map((h) =>
             h.replace(/^#{1,4}\s+/, "").replace(/<[^>]+>/g, "").trim(),
           );
