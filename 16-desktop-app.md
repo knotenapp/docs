@@ -47,14 +47,14 @@ controls.
 
 The desktop shell can reveal any file in your OS file manager and open it in your
 chosen editor at the exact line (see the **Reveal** / **Open** buttons in the details
-panel, [chapter 6](06-details-panel.md)). Editor choice comes from your Editor
-preference in Settings ([chapter 17](17-configuration.md#editor-preference)).
+panel, [chapter 6](/details-panel)). Editor choice comes from your Editor
+preference in Settings ([chapter 17](/configuration#editor-preference)).
 
 ## Where the desktop app stores its state
 
 Because the app folder is read-only, the desktop build relocates Knoten's writable
 state — its storage directory and the small SQLite database — to a per-user location,
-via the `KNOTEN_STORAGE_PATH` mechanism ([chapter 17](17-configuration.md)). Your
+via the `KNOTEN_STORAGE_PATH` mechanism ([chapter 17](/configuration)). Your
 recent-projects list, graph cache, and the contexts/notes local storage all live
 there. This is transparent in normal use.
 
@@ -80,4 +80,4 @@ Installers are produced with `electron-builder` and can be published to GitHub
 releases. End users just download and run the installer for their platform — none of
 the above is needed to *use* Knoten.
 
-Next: [Configuration →](17-configuration.md)
+Next: [Configuration →](/configuration)

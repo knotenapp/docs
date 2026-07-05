@@ -22,12 +22,12 @@ desktop app), requiring no account:
 
 Light, dark, or follow-the-system theme. The choice is remembered in a cookie and
 respected across the whole app; exported PNGs use the active theme's background
-([chapter 10](10-exporting.md)). Reach it from **Settings** in the filter rail.
+([chapter 10](/exporting)). Reach it from **Settings** in the filter rail.
 
 ### <a id="editor-preference"></a>Editor preference
 
 Which editor the **Open** action uses to jump to a file at a line
-([chapter 6](06-details-panel.md#reveal--open)). Options: **System default**, VS Code,
+([chapter 6](/details-panel#reveal--open)). Options: **System default**, VS Code,
 VS Code Insiders, Cursor, Windsurf, Zed, PhpStorm, WebStorm, IntelliJ IDEA, and
 Sublime Text. Each specific editor opens via its deep-link URL scheme (e.g.
 `vscode://file/…`), jumping straight to the file and line; "System default" uses the OS
@@ -37,7 +37,7 @@ file association. The choice is saved locally and persists across sessions.
 
 The one server-side setting worth knowing. It controls which directories are scanned to
 **auto-discover** Laravel projects for the Open dialog and the Welcome screen's
-quick-picks ([chapter 3](03-opening-projects.md)):
+quick-picks ([chapter 3](/opening-projects)):
 
 ```php
 // config/knoten.php
@@ -91,7 +91,7 @@ beyond the cached graph):
 
 The graph cache is keyed by a fingerprint of the scanned files, so it invalidates
 itself whenever your source changes — you never need to clear it manually. See
-[chapter 18](18-how-it-works.md#caching).
+[chapter 18](/how-it-works#caching).
 
 ## Standard Laravel configuration
 
@@ -99,7 +99,7 @@ Knoten is a Laravel app, so the usual `config/` files exist (`app.php`, `databas
 `session.php`, `cache.php`, `logging.php`, `fortify.php`, `inertia.php`, and so on).
 For normal use you do not need to touch any of them — the defaults are set up for a
 local, single-user, SQLite-backed tool. The Fortify auth backend it ships is not
-surfaced in the UI ([chapter 2](02-installation.md#no-login-required)).
+surfaced in the UI ([chapter 2](/installation#no-login-required)).
 
 ## The target project's `.env`
 
@@ -107,9 +107,9 @@ Knoten reads a *target project's* `.env` only for two read-only purposes:
 
 - to profile its stack (app name, database engine) for the Insights panel, and
 - to connect to its **live database** when you enable that schema source
-  ([chapter 14](14-database-schema.md)).
+  ([chapter 14](/database-schema)).
 
 It never writes to a target project's `.env`, and it never reads `.env.example` for
 credentials (those are placeholders).
 
-Next: [How Analysis Works →](18-how-it-works.md)
+Next: [How Analysis Works →](/how-it-works)

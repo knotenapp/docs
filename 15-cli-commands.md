@@ -24,7 +24,7 @@ php artisan knoten:scan <path> [<path> ...] [--output=graph.json]
 
 | Argument / option | Meaning |
 |-------------------|---------|
-| `path` (one or more) | Absolute path(s) to the project(s)/package(s) to analyse. Multiple paths are combined into one graph, just like opening multiple roots in the UI ([chapter 3](03-opening-projects.md#opening-multiple-roots-at-once)). |
+| `path` (one or more) | Absolute path(s) to the project(s)/package(s) to analyse. Multiple paths are combined into one graph, just like opening multiple roots in the UI ([chapter 3](/opening-projects#opening-multiple-roots-at-once)). |
 | `--output=FILE` | Write the full graph JSON to `FILE`. |
 
 Without `--output` it prints a summary table — model count, relationship-edge count,
@@ -39,16 +39,16 @@ php artisan knoten:scan /home/me/sites/shop /home/me/packages/billing --output=s
 ```
 
 The `--output` JSON is the exact same contract as the in-app **Export as JSON**
-([chapter 10](10-exporting.md)) and the graph the UI renders.
+([chapter 10](/exporting)) and the graph the UI renders.
 
 ---
 
 ## `knoten:check`
 
 The architecture gate: scan a project, evaluate its declared
-[rules](11-architecture-rules.md), and **exit non-zero on any violation** so CI can
+[rules](/architecture-rules), and **exit non-zero on any violation** so CI can
 block a merge. This is the command your CI workflow runs
-([chapter 13](13-checking-and-ci.md)).
+([chapter 13](/checking-and-ci)).
 
 ```bash
 php artisan knoten:check <path> [<path> ...] [--config=knoten.php] [--json]
@@ -80,7 +80,7 @@ php artisan knoten:check /home/me/sites/shop --config=/home/me/sites/shop/.knote
 
 ## `knoten:preset`
 
-List the bundled [rule presets](12-rule-presets.md), or add/remove one in a project's
+List the bundled [rule presets](/rule-presets), or add/remove one in a project's
 `knoten.php`. This is the CLI twin of the in-app **Rule presets** dialog.
 
 ```bash
@@ -106,7 +106,7 @@ php artisan knoten:preset remove laravel-layers --path=/home/me/sites/shop
 
 `add` validates the name up front (an unknown preset is rejected before any write),
 and edits the file as a precise string transform that leaves your formatting and
-comments intact ([chapter 12](12-rule-presets.md#how-editing-your-file-is-kept-safe)).
+comments intact ([chapter 12](/rule-presets#how-editing-your-file-is-kept-safe)).
 
 ---
 
@@ -119,7 +119,7 @@ is just one line — run the check and let its exit code fail the job:
 php artisan knoten:check "$GITHUB_WORKSPACE"
 ```
 
-Any non-zero exit fails the build. See [chapter 13](13-checking-and-ci.md) for the
+Any non-zero exit fails the build. See [chapter 13](/checking-and-ci) for the
 full CI story.
 
-Next: [Desktop App →](16-desktop-app.md)
+Next: [Desktop App →](/desktop-app)

@@ -74,7 +74,7 @@ does not produce a thousand steps.
   reading the code, in language a non-author (or a non-developer) can follow.
 - **Reviewing a violation:** when an architecture check flags a class, method flow
   takes you to the exact method — and the exact step — where the forbidden dependency
-  happens (see [chapter 13](13-checking-and-ci.md)). The floating check overlay can
+  happens (see [chapter 13](/checking-and-ci)). The floating check overlay can
   jump you straight into the offending method's flow.
 - **Auditing authorization:** see at a glance whether a method actually calls
   `authorize()` and against what.
@@ -83,6 +83,6 @@ does not produce a thousand steps.
 
 Every step carries the source line it came from, so from method flow you are always
 one **Open** away from the real code at the exact line in your editor (see
-[chapter 6](06-details-panel.md#reveal--open)).
+[chapter 6](/details-panel#reveal--open)).
 
-Next: [Contexts & Notes →](09-contexts-and-notes.md)
+Next: [Contexts & Notes →](/contexts-and-notes)

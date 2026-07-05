@@ -10,7 +10,7 @@ slug: reference
 
 The complete catalogues Knoten works with — every node kind, every edge kind — plus the
 exported JSON shape and a glossary. Use this to interpret the graph, write precise
-[rules](11-architecture-rules.md), or work with exported data.
+[rules](/architecture-rules), or work with exported data.
 
 ## <a id="node-kinds"></a>Node kinds
 
@@ -110,12 +110,12 @@ Used on nodes, edges, and as a rule filter (`confidence`), ranked
 | `inferred` | Resolved by convention / best effort | Dashed edge, amber dot |
 | `dynamic` | Unresolved; surfaced for transparency | Listed as an unresolved reference |
 
-See [chapter 1](01-introduction.md#confidence) and [chapter 18](18-how-it-works.md).
+See [chapter 1](/introduction#confidence) and [chapter 18](/how-it-works).
 
 ## Exported JSON shape
 
-The graph exported via **Export as JSON** ([chapter 10](10-exporting.md)) or
-`knoten:scan --output` ([chapter 15](15-cli-commands.md)) has this shape:
+The graph exported via **Export as JSON** ([chapter 10](/exporting)) or
+`knoten:scan --output` ([chapter 15](/cli-commands)) has this shape:
 
 ```jsonc
 {
@@ -171,7 +171,7 @@ Notes:
 - Edge `sites` gives the exact `method` + `line` (+ visibility) where the relationship
   originates — this is what powers "jump to the offending line" in checks and method flow.
 - `schemaDrift` is populated only when reading a live database that disagrees with the
-  migrations (see [chapter 14](14-database-schema.md)).
+  migrations (see [chapter 14](/database-schema)).
 
 The contract is identical across the UI, the JSON export, and the CLI, so anything you
 build against it works everywhere.
@@ -196,5 +196,5 @@ build against it works everywhere.
 
 ---
 
-That completes the manual. Start over at the [index](README.md), or jump back to any
+That completes the manual. Start over at the [index](/), or jump back to any
 chapter.

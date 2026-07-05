@@ -58,7 +58,7 @@ call sites). Files that fail to parse become **warnings** rather than aborting t
 
 In parallel, the schema is reconstructed — by replaying migrations (default) or reading
 the live database — into a set of tables with columns and foreign keys. This is covered
-in [chapter 14](14-database-schema.md).
+in [chapter 14](/database-schema).
 
 ### 3. Extraction
 
@@ -107,7 +107,7 @@ All the nodes and edges are merged into one `ProjectGraph`. Knoten then:
 - **tags coverage** — a separate pass over `tests/` counts how many test files
   reference each class, producing the "tested ×N" signal,
 - **assigns groups** — module / app / package / vendor (see
-  [chapter 1](01-introduction.md#grouping)),
+  [chapter 1](/introduction#grouping)),
 - **marks scheduled** commands/jobs (from the scheduler in `Kernel.php`,
   `routes/console.php`, or `bootstrap/app.php`), and
 - computes **statistics** (counts per kind, relationship/edge totals).
@@ -131,7 +131,7 @@ in the browser against the same graph data.
 ## Why confidence exists
 
 Every detection above is either a **fact** or an **inference**. Knoten records which,
-per node and per edge, as its **confidence** ([chapter 1](01-introduction.md#confidence)):
+per node and per edge, as its **confidence** ([chapter 1](/introduction#confidence)):
 
 - **High** — proven: typed injection, `::class` arguments, explicit relationships,
   parent chains that reach a known base within the scan, foreign keys with explicit
@@ -145,7 +145,7 @@ per node and per edge, as its **confidence** ([chapter 1](01-introduction.md#con
 
 This is a deliberate design choice: it lets you trust the solid map completely and
 treat dashed/amber parts as leads. Architecture rules can even filter on confidence, so
-you can choose to enforce only what is proven ([chapter 11](11-architecture-rules.md)).
+you can choose to enforce only what is proven ([chapter 11](/architecture-rules)).
 
 ## Known limits
 
@@ -168,4 +168,4 @@ Understanding these prevents surprises:
 
 The guiding principle throughout: **surface for transparency, never guess silently.**
 
-Next: [Reference →](19-reference.md)
+Next: [Reference →](/reference)

@@ -27,8 +27,8 @@ background colour, so a dark-theme export looks right on a dark page.
 
 > **Tip:** filter the graph down before exporting. A PNG of the full backbone reads
 > far better than a PNG of every layer at once. Turn off edge labels
-> ([chapter 5](05-filtering-and-navigating.md)) for a cleaner picture, or focus a
-> context ([chapter 9](09-contexts-and-notes.md)) to export just one domain.
+> ([chapter 5](/filtering-and-navigating)) for a cleaner picture, or focus a
+> context ([chapter 9](/contexts-and-notes)) to export just one domain.
 
 The PNG captures what is currently visible and laid out — your filters, heatmap, and
 focus all show through — so you can compose the exact view you want, then export it.
@@ -37,13 +37,13 @@ focus all show through — so you can compose the exact view you want, then expo
 
 Downloads the **complete project graph** as JSON — the same data contract the backend
 produces and the same one the `knoten:scan --output` command writes
-([chapter 15](15-cli-commands.md)). The file is named `<project>-knoten.json`.
+([chapter 15](/cli-commands)). The file is named `<project>-knoten.json`.
 
 The JSON contains everything: every node (with kind, label, file, line, fully-qualified
 name, confidence, and metadata), every edge (with kind, source, target, confidence,
 detail, and call sites), the project profile, statistics, unresolved references,
 parse warnings, and the schema source/drift. The full shape is documented in
-[chapter 18](18-how-it-works.md) and [chapter 19](19-reference.md).
+[chapter 18](/how-it-works) and [chapter 19](/reference).
 
 ### What JSON export is good for
 
@@ -57,4 +57,4 @@ parse warnings, and the schema source/drift. The full shape is documented in
 Because it is the same contract everywhere (in-app, CLI, and export), anything you
 build against the JSON works regardless of which produced it.
 
-Next: [Architecture Rules →](11-architecture-rules.md)
+Next: [Architecture Rules →](/architecture-rules)

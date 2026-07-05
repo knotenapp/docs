@@ -15,8 +15,8 @@ opened before.
 This manual explains **how to use Knoten and how to understand what it shows you**.
 It is organised into five sections, from first run to full reference.
 
-> **New here?** Read [Introduction & Concepts](01-introduction.md) for the ideas,
-> then [Installation](02-installation.md) to get it running. After that, jump to
+> **New here?** Read [Introduction & Concepts](/introduction) for the ideas,
+> then [Installation](/installation) to get it running. After that, jump to
 > whatever you need.
 
 ## Contents
@@ -24,40 +24,40 @@ It is organised into five sections, from first run to full reference.
 ### 1. Getting Started
 *What Knoten is, and how to get it running.*
 
-- [Introduction & Concepts](01-introduction.md) — what Knoten is, and the graph model: nodes, edges, and confidence.
-- [Installation & Setup](02-installation.md) — running the web app, the desktop app, and the requirements for each.
-- [Opening a Project](03-opening-projects.md) — the welcome screen, the open dialog, recents, multiple roots, excludes, and rescanning.
+- [Introduction & Concepts](/introduction) — what Knoten is, and the graph model: nodes, edges, and confidence.
+- [Installation & Setup](/installation) — running the web app, the desktop app, and the requirements for each.
+- [Opening a Project](/opening-projects) — the welcome screen, the open dialog, recents, multiple roots, excludes, and rescanning.
 
 ### 2. Using the App
 *Reading, navigating, and interrogating the architecture map.*
 
-- [Reading the Graph](04-reading-the-graph.md) — the canvas: node cards, edges, colours, groups, and the confidence cues.
-- [Filtering & Navigating](05-filtering-and-navigating.md) — the filter rail: search, layers, groups, links, heatmaps, orphans, density.
-- [The Details Panel](06-details-panel.md) — the node inspector, plain-language summaries, metrics, flags, insights, legend.
-- [Traces](07-traces.md) — request, dependency, impact, relationship, authorization, and connection-path traces.
-- [Method Flow](08-method-flow.md) — drilling into a class to read each method as plain-language, branch-aware steps.
-- [Contexts & Notes](09-contexts-and-notes.md) — drawing your own boundaries and pinning sticky notes onto the map.
-- [Exporting](10-exporting.md) — saving the graph as a PNG image or as the full JSON data contract.
+- [Reading the Graph](/reading-the-graph) — the canvas: node cards, edges, colours, groups, and the confidence cues.
+- [Filtering & Navigating](/filtering-and-navigating) — the filter rail: search, layers, groups, links, heatmaps, orphans, density.
+- [The Details Panel](/details-panel) — the node inspector, plain-language summaries, metrics, flags, insights, legend.
+- [Traces](/traces) — request, dependency, impact, relationship, authorization, and connection-path traces.
+- [Method Flow](/method-flow) — drilling into a class to read each method as plain-language, branch-aware steps.
+- [Contexts & Notes](/contexts-and-notes) — drawing your own boundaries and pinning sticky notes onto the map.
+- [Exporting](/exporting) — saving the graph as a PNG image or as the full JSON data contract.
 
 ### 3. Enforcing Architecture
 *Turning the map into rules you can check and gate merges on.*
 
-- [Architecture Rules](11-architecture-rules.md) — the `knoten.php` rules file: node selectors, edge and confidence filters.
-- [Rule Presets](12-rule-presets.md) — bundled boundary sets, and enabling or copying them from the UI or CLI.
-- [Checking & CI](13-checking-and-ci.md) — running checks in the app, scaffolding a CI gate, and failing a build on violations.
+- [Architecture Rules](/architecture-rules) — the `knoten.php` rules file: node selectors, edge and confidence filters.
+- [Rule Presets](/rule-presets) — bundled boundary sets, and enabling or copying them from the UI or CLI.
+- [Checking & CI](/checking-and-ci) — running checks in the app, scaffolding a CI gate, and failing a build on violations.
 
 ### 4. Going Deeper
 *Schema sources, the command line, the desktop build, configuration, and internals.*
 
-- [Database Schema](14-database-schema.md) — migration replay vs. reading the live database, and schema drift.
-- [Command Line](15-cli-commands.md) — the `knoten:scan`, `knoten:check`, and `knoten:preset` commands.
-- [Desktop App](16-desktop-app.md) — native features, native menus, and building installers.
-- [Configuration](17-configuration.md) — `config/knoten.php`, environment variables, preferences, and stored state.
-- [How Analysis Works](18-how-it-works.md) — the scan pipeline, the extractors, caching, and why confidence exists.
+- [Database Schema](/database-schema) — migration replay vs. reading the live database, and schema drift.
+- [Command Line](/cli-commands) — the `knoten:scan`, `knoten:check`, and `knoten:preset` commands.
+- [Desktop App](/desktop-app) — native features, native menus, and building installers.
+- [Configuration](/configuration) — `config/knoten.php`, environment variables, preferences, and stored state.
+- [How Analysis Works](/how-it-works) — the scan pipeline, the extractors, caching, and why confidence exists.
 
 ### 5. Reference
 
-- [Reference](19-reference.md) — every node kind and edge kind, the exported JSON shape, and a glossary.
+- [Reference](/reference) — every node kind and edge kind, the exported JSON shape, and a glossary.
 
 ---
 
@@ -77,7 +77,7 @@ It is organised into five sections, from first run to full reference.
 > **A note on honesty.** Static analysis of Laravel can never be perfect. Knoten
 > never pretends certainty: every node and edge carries a *confidence* level, and
 > anything it inferred rather than proved is drawn dashed and labelled. See
-> [Introduction](01-introduction.md#confidence) and [How Analysis Works](18-how-it-works.md).
+> [Introduction](/introduction#confidence) and [How Analysis Works](/how-it-works).
 
 ---
 
@@ -91,8 +91,16 @@ a docs site (e.g. a `docs.` subdomain) that fetches the Markdown from GitHub.
   descriptions. Build your sidebar/nav from it rather than hard-coding chapters.
 - **Each page carries YAML frontmatter** (`title`, `description`, `section`, `order`,
   `slug`) so a renderer can read metadata without parsing the body.
-- **Slug/route rule:** a file's route is its filename with the leading `NN-` prefix
-  and the `.md` extension removed (`03-opening-projects.md` → `opening-projects`).
-  Rewrite relative in-body `*.md` links the same way. `README.md` is the home page
-  (slug `index`). This rule is also recorded in `manifest.json` (`linkRule`).
+- **Slug/route rule:** a page's route is `/` + its slug, where the slug is the
+  filename with the leading `NN-` prefix and the `.md` extension removed
+  (`03-opening-projects.md` → `/opening-projects`). The home page (`README.md`) is
+  served at `/`. In-body links between pages are **already written as absolute
+  `/slug` routes**, so no rewriting is needed. This is also recorded in
+  `manifest.json` (`linkRule`).
 - Chapters are numbered so they sort correctly when browsed directly on GitHub.
+
+## License
+
+The Knoten Documentation is licensed under
+[Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE) — you are free
+to share and adapt it, including commercially, with attribution.

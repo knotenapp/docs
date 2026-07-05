@@ -20,7 +20,7 @@ lays it out as a readable sequence, and a small trace panel lets you step throug
 ## Starting a trace
 
 Select a node, then use the **trace buttons** in the details panel
-([chapter 6](06-details-panel.md)). Which buttons appear depends on the node — you
+([chapter 6](/details-panel)). Which buttons appear depends on the node — you
 will not see "Trace this request" unless you have a route selected, for instance.
 Clear a trace to return to the full graph.
 
@@ -121,6 +121,6 @@ by any real relationship, Knoten tells you so rather than inventing a path.
 All six traces are the *same* breadth-first engine with different presets — a set of
 edge kinds, a direction, and which node kinds are valid start points. This is why they
 feel consistent, and why new trace types can be added without new machinery. See
-[chapter 18](18-how-it-works.md) if you want the details.
+[chapter 18](/how-it-works) if you want the details.
 
-Next: [Method Flow →](08-method-flow.md)
+Next: [Method Flow →](/method-flow)

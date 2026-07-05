@@ -8,8 +8,8 @@ slug: checking-and-ci
 
 # 13. Checking & CI
 
-Once you have [architecture rules](11-architecture-rules.md) (your own or from
-[presets](12-rule-presets.md)), you can **check** the project against them — in the
+Once you have [architecture rules](/architecture-rules) (your own or from
+[presets](/rule-presets)), you can **check** the project against them — in the
 app while you explore, or in CI to block a merge that breaks a boundary.
 
 ## Checking in the app
@@ -34,7 +34,7 @@ collapsible, and it *stays* over the canvas as you work — so after you drill i
 offending class you can still see the others and jump between them. Click an offender
 and Knoten:
 
-1. opens that class's **method flow** ([chapter 8](08-method-flow.md)), and
+1. opens that class's **method flow** ([chapter 8](/method-flow)), and
 2. expands the exact **method** where the forbidden dependency originates.
 
 That takes you from "a rule is broken" to "here is the precise line" in one click.
@@ -74,7 +74,7 @@ php artisan knoten:check /absolute/path/to/project
   violations).
 - You can pass **multiple paths** to check several roots together.
 
-See [chapter 15](15-cli-commands.md) for the full command reference.
+See [chapter 15](/cli-commands) for the full command reference.
 
 ### The generated workflow
 
@@ -86,7 +86,7 @@ contract rather than a wiki page nobody reads.
 
 ## A typical workflow
 
-1. **Adopt a preset** and/or write a few rules ([chapters 11](11-architecture-rules.md)–[12](12-rule-presets.md)).
+1. **Adopt a preset** and/or write a few rules ([chapters 11](/architecture-rules)–[12](/rule-presets)).
 2. **Check in-app** to see where you stand today; use the overlay to jump to each
    violation and decide: fix the code, or relax the rule.
 3. Get to green.
@@ -107,6 +107,6 @@ Every violation tells you:
 
 If a violation is on an *inferred* edge you disagree with, tighten the rule with a
 `confidence => 'high'` filter or a narrower `edges` list
-([chapter 11](11-architecture-rules.md)).
+([chapter 11](/architecture-rules)).
 
-Next: [Database Schema →](14-database-schema.md)
+Next: [Database Schema →](/database-schema)

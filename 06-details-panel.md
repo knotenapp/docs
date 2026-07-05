@@ -32,7 +32,7 @@ focus it on the canvas; select a node to switch to the node view.
 - **Database access map** — every table with a count of how many code paths reach it,
   and a "no model" flag for tables that no Eloquent model maps to.
 - **Schema drift** — shown only when you are reading a live database and it disagrees
-  with your migrations (see [chapter 14](14-database-schema.md)).
+  with your migrations (see [chapter 14](/database-schema)).
 - **Needs attention** — orphan tables (no model) and unresolved references.
 - **Legend** — every node kind present in the project with its colour, plus a
   reminder that dashed edges and amber dots mark *inferred* links, and *LOC* = lines
@@ -88,7 +88,7 @@ Two buttons (when the node has a source file):
   comes from your Editor preference (Settings) — VS Code, Cursor, Windsurf, Zed,
   PhpStorm, WebStorm, IntelliJ, Sublime, or the system default. Editors are opened via
   their deep-link URL scheme so you jump straight to the code. See
-  [chapter 17](17-configuration.md#editor-preference).
+  [chapter 17](/configuration#editor-preference).
 
 ### Needs attention
 
@@ -106,11 +106,11 @@ For a route: its HTTP method badges, the URI, and the controller action it maps 
 ### Trace & explore actions
 
 A set of buttons that launch analyses on the canvas — this is one of Knoten's most
-powerful features, covered in full in [chapter 7, Traces](07-traces.md). Depending on
+powerful features, covered in full in [chapter 7, Traces](/traces). Depending on
 the node kind you may see:
 
 - **Explore methods** — open the class on the canvas to read each method's flow
-  ([chapter 8](08-method-flow.md)).
+  ([chapter 8](/method-flow)).
 - **Trace this request** — follow a request from a route to the database.
 - **Trace dependencies** — everything this node reaches downstream.
 - **Trace impact** — everything that depends on this node (blast radius).
@@ -152,4 +152,4 @@ explore an unfamiliar codebase is often to **click your way through the panel**:
 at a hotspot, read its plain-words summary, jump to a connection, read that one, and
 so on — the canvas keeps up, focusing each node as you go.
 
-Next: [Traces →](07-traces.md)
+Next: [Traces →](/traces)

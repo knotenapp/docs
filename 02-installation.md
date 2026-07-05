@@ -103,17 +103,17 @@ can ignore them entirely.
 
 The only settings that *are* surfaced are **Appearance** (light/dark/system theme)
 and **Editor** (your preferred IDE for the "Open" action) — both stored locally in
-the browser, requiring no account. See [chapter 6](06-details-panel.md) and
-[chapter 17](17-configuration.md).
+the browser, requiring no account. See [chapter 6](/details-panel) and
+[chapter 17](/configuration).
 
 ---
 
 ## Verifying it works
 
 Open the app. If you have no project configured yet, you will see the
-[Welcome screen](03-opening-projects.md). Knoten also ships a small sample Laravel
+[Welcome screen](/opening-projects). Knoten also ships a small sample Laravel
 project it can analyse out of the box (`tests/Fixtures/sample-project`), which it
 falls back to if nothing else is available — a good way to see a populated graph
 immediately.
 
-Next: [Opening a Project →](03-opening-projects.md)
+Next: [Opening a Project →](/opening-projects)

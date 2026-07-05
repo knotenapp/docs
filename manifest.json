@@ -3,7 +3,7 @@
   "description": "How to use and understand Knoten — the static architecture and database visualiser for Laravel projects.",
   "version": "1.0.0",
   "home": { "title": "Overview", "slug": "index", "file": "README.md" },
-  "linkRule": "A file's route/slug is its filename with the leading 'NN-' prefix and the '.md' extension removed (e.g. '03-opening-projects.md' -> 'opening-projects'). Rewrite relative in-body '*.md' links the same way. README.md is the home page (slug 'index').",
+  "linkRule": "Each page's route is '/' followed by its slug (e.g. '/opening-projects'); a slug is the filename with the leading 'NN-' prefix and the '.md' extension removed. The home page (README.md) is served at '/'. In-body Markdown links between pages are already written as absolute '/slug' routes, so no link rewriting is needed.",
   "sections": [
     {
       "title": "Getting Started",

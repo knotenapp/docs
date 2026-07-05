@@ -21,16 +21,16 @@ re-open it with the panel button), which is handy when you want maximum canvas.
 At the top the rail shows the current project's name and path, plus:
 
 - **Re-scan** (↻) — force a fresh scan (web app only; on desktop this lives in the
-  File menu). See [chapter 3](03-opening-projects.md#re-scanning).
+  File menu). See [chapter 3](/opening-projects#re-scanning).
 - **Settings** — opens the Editor/Appearance settings.
 - **Open a project** — the open dialog (hidden on desktop, where it lives in the
   native File menu).
 
 Below that sit three feature buttons, each opening a dialog:
 
-- **Check** — run the project's architecture rules now ([chapter 13](13-checking-and-ci.md)).
-- **Rule presets** — browse and enable bundled boundary sets ([chapter 12](12-rule-presets.md)).
-- **CI gate** — scaffold the files to enforce rules in CI ([chapter 13](13-checking-and-ci.md)).
+- **Check** — run the project's architecture rules now ([chapter 13](/checking-and-ci)).
+- **Rule presets** — browse and enable bundled boundary sets ([chapter 12](/rule-presets)).
+- **CI gate** — scaffold the files to enforce rules in CI ([chapter 13](/checking-and-ci)).
 
 ## Search
 
@@ -47,7 +47,7 @@ The search box filters the graph to nodes whose name matches. Notes:
 A toggle to read the schema from the project's **live database** (via its `.env`)
 instead of replaying migrations. It shows its status: "Reading from migrations",
 "Connected — reading from the database", or "Could not connect — using migrations".
-This is covered fully in [chapter 14, Database Schema](14-database-schema.md).
+This is covered fully in [chapter 14, Database Schema](/database-schema).
 
 ## Layers — showing and hiding node kinds
 
@@ -58,17 +58,17 @@ always reads "active, then off".
 
 - **Hide all / Show all** toggles every layer at once.
 - On a large graph, the detail layers start hidden — this is where you bring them
-  back (see [chapter 4](04-reading-the-graph.md#large-graphs-start-focused)).
+  back (see [chapter 4](/reading-the-graph#large-graphs-start-focused)).
 
 The full list of kinds and what each means is in
-[chapter 19, Reference](19-reference.md#node-kinds).
+[chapter 19, Reference](/reference#node-kinds).
 
 ## Groups — showing and hiding clusters
 
 When a project has more than one group (modules, multiple packages, or Vendor), a
 **Groups** section appears listing each group with a count. Click to hide/show a whole
 group; **Hide all / Show all** toggles them together. The **Vendor** group starts
-hidden. Grouping is explained in [chapter 1](01-introduction.md#grouping).
+hidden. Grouping is explained in [chapter 1](/introduction#grouping).
 
 ## Links — showing and hiding edge kinds
 
@@ -80,12 +80,12 @@ category to hide or show those edges. (The eleven Eloquent relationship kinds �
 
 At the bottom of this section is an **Edge labels** toggle to turn the text labels on
 edges on or off. The full edge catalogue is in
-[chapter 19, Reference](19-reference.md#edge-kinds).
+[chapter 19, Reference](/reference#edge-kinds).
 
 ## Excluded paths
 
 Skip whole folders from the scan to shrink the graph — covered in
-[chapter 3](03-opening-projects.md#scoping-a-scan-excluded-paths).
+[chapter 3](/opening-projects#scoping-a-scan-excluded-paths).
 
 ## Statistics
 
@@ -119,7 +119,7 @@ Turn the heatmap off to return to kind-colours.
 Lights up **likely-unused nodes** (nothing points to them) and dims everything else —
 a quick way to spot dead-ish code, controllers no route reaches, tables no model maps
 to, and so on. (The details panel's *Needs attention* flags call out specific cases
-like these too — see [chapter 6](06-details-panel.md).)
+like these too — see [chapter 6](/details-panel).)
 
 ### Density
 
@@ -138,4 +138,4 @@ Switch the layout between **comfortable** (more breathing room) and **compact**
 - Search + the Layers/Links filters together are the fastest way to isolate a
   sub-system: hide everything except, say, models and tables, then search a name.
 
-Next: [The Details Panel →](06-details-panel.md)
+Next: [The Details Panel →](/details-panel)

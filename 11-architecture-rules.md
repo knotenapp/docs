@@ -11,8 +11,8 @@ slug: architecture-rules
 Beyond *seeing* your architecture, Knoten can **enforce** it. You declare boundaries —
 forbidden dependencies like "controllers must not query the database directly" — and
 Knoten flags anywhere the graph actually breaks them. This chapter covers the rules
-file and its syntax; [chapter 12](12-rule-presets.md) covers ready-made rule sets, and
-[chapter 13](13-checking-and-ci.md) covers running the checks and gating CI.
+file and its syntax; [chapter 12](/rule-presets) covers ready-made rule sets, and
+[chapter 13](/checking-and-ci) covers running the checks and gating CI.
 
 ## The `knoten.php` file
 
@@ -44,8 +44,8 @@ Both keys are optional. Presets are expanded first, then your inline rules — s
 own rules read after the boundaries you inherited.
 
 You do not have to write this file by hand: the **CI gate** scaffolder and the **rule
-presets** UI both create and edit it for you ([chapters 12](12-rule-presets.md) and
-[13](13-checking-and-ci.md)). But understanding the syntax lets you tailor it.
+presets** UI both create and edit it for you ([chapters 12](/rule-presets) and
+[13](/checking-and-ci)). But understanding the syntax lets you tailor it.
 
 ## What a rule is
 
@@ -66,7 +66,7 @@ that runs **from** a node matching `from` **to** a node matching `to`.
 - **`name`** — shown in violation reports. If omitted, Knoten generates one like
   *"controller must not depend on table"*.
 - **`from`** / **`to`** — **required** node selectors (see below).
-- **`edges`** — optional list of [edge kinds](19-reference.md#edge-kinds) to restrict
+- **`edges`** — optional list of [edge kinds](/reference#edge-kinds) to restrict
   the rule to. Omit it to match *any* edge between the two selectors. An unknown edge
   kind is a hard error (so a typo cannot silently disable the rule).
 - **`confidence`** — optional. Only flag edges at or above this confidence
@@ -90,7 +90,7 @@ criterion, a list means *any of*.
 
 | Criterion | Matches on | Example |
 |-----------|-----------|---------|
-| `kind` | The node's [kind](19-reference.md#node-kinds) | `'controller'`, `['model', 'service']` |
+| `kind` | The node's [kind](/reference#node-kinds) | `'controller'`, `['model', 'service']` |
 | `namespace` | The fully-qualified class name, with `*` wildcards | `'App\\Legacy\\*'` |
 | `group` | The node's group/module | `'Billing'`, `'Vendor'` |
 | `label` | The node's label, with `*` wildcards | `'*Controller'`, `'Legacy*'` |
@@ -149,7 +149,7 @@ to the exact line.
 
 ## Tips
 
-- **Start from a preset** ([chapter 12](12-rule-presets.md)) and add your own rules —
+- **Start from a preset** ([chapter 12](/rule-presets)) and add your own rules —
   you rarely need to write everything from scratch.
 - Use **`confidence => 'high'`** on rules where inferred links would cause false
   alarms; leave it off when you want to be strict.
@@ -157,4 +157,4 @@ to the exact line.
   controllers to tables but allow a harmless `references`.
 - Keep rule names action-oriented; they become the headings in the check report.
 
-Next: [Rule Presets →](12-rule-presets.md)
+Next: [Rule Presets →](/rule-presets)

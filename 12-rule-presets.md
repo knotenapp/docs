@@ -14,7 +14,7 @@ your project and tweak. They are the fastest way to start enforcing architecture
 
 ## What a preset is
 
-A preset is a curated bundle of [rules](11-architecture-rules.md) shipped *inside*
+A preset is a curated bundle of [rules](/architecture-rules) shipped *inside*
 Knoten, referenced by a short name. Pulling one in is a one-line edit to your
 `knoten.php`:
 
@@ -101,7 +101,7 @@ php artisan knoten:preset add thin-controllers --path=/absolute/path/to/project
 ```
 
 An unknown preset name is rejected up front, so you never write a name that would later
-fail a check. See [chapter 15](15-cli-commands.md) for all CLI details.
+fail a check. See [chapter 15](/cli-commands) for all CLI details.
 
 ## How editing your file is kept safe
 
@@ -117,11 +117,11 @@ your config as code and correctly ignores commented-out examples like
 
 1. Open **Rule presets**, expand `laravel-layers`, and read what it enforces.
 2. **Enable** it. If your project has no `knoten.php`, one is created for you.
-3. Run a **Check** ([chapter 13](13-checking-and-ci.md)) to see where you already
+3. Run a **Check** ([chapter 13](/checking-and-ci)) to see where you already
    comply and where you do not.
 4. If a rule is too strict for your project, **copy** the preset and edit the offending
    rule (add a `confidence => 'high'` filter, narrow a selector, or remove it).
 5. Add your own project-specific rules alongside.
-6. Wire it into CI ([chapter 13](13-checking-and-ci.md)).
+6. Wire it into CI ([chapter 13](/checking-and-ci)).
 
-Next: [Checking & CI →](13-checking-and-ci.md)
+Next: [Checking & CI →](/checking-and-ci)

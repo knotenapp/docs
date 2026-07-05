@@ -88,4 +88,4 @@ Consequences worth knowing:
 Together they turn Knoten from a generated diagram into a living map annotated with
 your team's understanding.
 
-Next: [Exporting →](10-exporting.md)
+Next: [Exporting →](/exporting)

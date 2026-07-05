@@ -21,7 +21,7 @@ Knoten can reconstruct your schema two ways:
 2. **Live database** (opt-in) — read directly from your real database.
 
 You switch between them with the **Schema source** toggle in the filter rail
-([chapter 5](05-filtering-and-navigating.md)).
+([chapter 5](/filtering-and-navigating)).
 
 ## Migration replay (default)
 
@@ -106,4 +106,4 @@ For most work the default migration replay is what you want. Reach for the live
 database when the question is specifically "what does the real database look like, and
 does it match the code?"
 
-Next: [Command Line →](15-cli-commands.md)
+Next: [Command Line →](/cli-commands)

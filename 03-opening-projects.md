@@ -34,7 +34,7 @@ dialog. There you can:
 - **Type or paste an absolute path** to a project folder.
 - **Pick from recent projects** — the last 10 projects you opened, most recent first.
 - **Pick from discovered projects** — projects Knoten found automatically in your
-  configured project roots (see [Configuration](17-configuration.md)).
+  configured project roots (see [Configuration](/configuration)).
 
 On the **desktop app**, "Open a project" skips the dialog and opens your operating
 system's native folder picker instead — choose a folder and Knoten opens it.
@@ -55,7 +55,7 @@ project, it returns you to the Welcome screen with the failed path shown.
   `config/knoten.php` (`project_roots`). Each immediate sub-folder that contains an
   `artisan` file is offered. By default Knoten looks in a couple of sensible home
   locations; you can point it anywhere via the `KNOTEN_PROJECT_ROOTS` environment
-  variable. See [chapter 17](17-configuration.md).
+  variable. See [chapter 17](/configuration).
 
 ## Opening multiple roots at once
 
@@ -68,7 +68,7 @@ To do this, provide multiple paths separated by **commas or newlines** in the pa
 field. Class facts from every root are merged before analysis, so a reference from
 one package into another's namespace becomes a real cross-package edge. When you open
 more than one root, nodes group by the **project/package** they belong to (see
-[grouping in chapter 1](01-introduction.md#grouping)).
+[grouping in chapter 1](/introduction#grouping)).
 
 The first path you list is treated as the **primary** root — its schema source and
 any schema drift are what get badged in the UI.
@@ -112,11 +112,11 @@ view does not reset out from under you. Opening a *different* project resets the
 
 1. Knoten walks the project, parses every PHP file, and collects class facts.
 2. It reads the database schema (from migrations by default — see
-   [chapter 14](14-database-schema.md)).
+   [chapter 14](/database-schema)).
 3. It runs its extractors to build nodes and edges, then lays them out.
 4. The result is cached and drawn on the canvas.
 
 The first scan of a large project takes a few seconds; subsequent opens are instant
 until the source changes.
 
-Next: [Reading the Graph →](04-reading-the-graph.md)
+Next: [Reading the Graph →](/reading-the-graph)

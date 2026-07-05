@@ -52,7 +52,7 @@ has two kinds of parts.
 A **node** is one thing in your application — a model, a controller, a database
 table, a route, a package, and so on. Each node has:
 
-- a **kind** (its type — see the [full catalogue](19-reference.md#node-kinds)),
+- a **kind** (its type — see the [full catalogue](/reference#node-kinds)),
 - a **label** (usually the class basename, e.g. `PostController`),
 - optionally a **file** and **line** (so it can be opened in your editor),
 - a **fully-qualified class name** (for PHP classes),
@@ -74,7 +74,7 @@ An **edge** is a directed relationship between two nodes — "this controller
 **routes-to** that action", "this model **belongsTo** that model", "this service
 **queries** that table". Each edge has:
 
-- a **kind** (see the [full catalogue](19-reference.md#edge-kinds)),
+- a **kind** (see the [full catalogue](/reference#edge-kinds)),
 - a **source** and a **target** node,
 - a **confidence** level,
 - an optional **detail** (e.g. the relationship method name), and
@@ -100,7 +100,7 @@ attaches a **confidence** level to *every* node and edge:
 Wherever you see a dashed line or a small amber dot, read it as *"likely, but the
 analysis could not prove it."* This lets you trust the solid parts of the map
 completely, and treat the inferred parts as leads. See
-[chapter 18](18-how-it-works.md) for exactly how each kind is detected.
+[chapter 18](/how-it-works) for exactly how each kind is detected.
 
 ## Grouping
 
@@ -116,6 +116,6 @@ Every node is also assigned a **group** so related code reads as a cluster:
 
 ## Where to go next
 
-- Get it running → [chapter 2, Installation](02-installation.md).
-- Understand the picture on screen → [chapter 4, Reading the Graph](04-reading-the-graph.md).
-- See the exhaustive list of every node and edge type → [chapter 19, Reference](19-reference.md).
+- Get it running → [chapter 2, Installation](/installation).
+- Understand the picture on screen → [chapter 4, Reading the Graph](/reading-the-graph).
+- See the exhaustive list of every node and edge type → [chapter 19, Reference](/reference).

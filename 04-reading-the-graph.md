@@ -61,13 +61,13 @@ meaningful: it always runs **source → target**. For example:
 
 This is the single most important visual cue in Knoten: a dashed line means "the
 analysis believes this but could not confirm it." (See
-[confidence, chapter 1](01-introduction.md#confidence).)
+[confidence, chapter 1](/introduction#confidence).)
 
 ### Edge labels
 
 By default, edges are labelled with what kind of relationship they are. You can turn
 edge labels off in the **Links** section of the filter rail to declutter a dense
-graph (see [chapter 5](05-filtering-and-navigating.md)).
+graph (see [chapter 5](/filtering-and-navigating)).
 
 ## Groups
 
@@ -100,7 +100,7 @@ dense graph Knoten trades some layout polish for speed, and if the layout ever f
 it falls back to a simple grid so the graph always appears.
 
 You can adjust how tightly the graph is packed with the **density** control
-(comfortable vs. compact) — see [chapter 5](05-filtering-and-navigating.md).
+(comfortable vs. compact) — see [chapter 5](/filtering-and-navigating).
 
 ## Large graphs start focused
 
@@ -125,10 +125,10 @@ code is external to the architecture you are mapping.
 
 ## What you can do from here
 
-- Filter and search the graph → [chapter 5](05-filtering-and-navigating.md).
-- Inspect a node in depth → [chapter 6](06-details-panel.md).
-- Follow a flow or find a blast radius → [chapter 7, Traces](07-traces.md).
-- Read a class's methods as plain steps → [chapter 8, Method Flow](08-method-flow.md).
-- Draw your own boundaries and notes → [chapter 9](09-contexts-and-notes.md).
+- Filter and search the graph → [chapter 5](/filtering-and-navigating).
+- Inspect a node in depth → [chapter 6](/details-panel).
+- Follow a flow or find a blast radius → [chapter 7, Traces](/traces).
+- Read a class's methods as plain steps → [chapter 8, Method Flow](/method-flow).
+- Draw your own boundaries and notes → [chapter 9](/contexts-and-notes).
 
-Next: [Filtering & Navigating →](05-filtering-and-navigating.md)
+Next: [Filtering & Navigating →](/filtering-and-navigating)
