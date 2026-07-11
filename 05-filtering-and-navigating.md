@@ -108,11 +108,30 @@ spotlight the graph. These are toggled from the canvas toolbar and details panel
 
 Recolour every node by a chosen metric, turning the graph into a heatmap:
 
-- **Coverage** — how many test files reference each class (the "tested ×N" signal).
+- **Coverage** — do your tests reach this class? 🟢 **green** = a test names the class
+  directly (a `use`, `new`, `::class`, or static call) **or**, for a controller /
+  Livewire component, a test exercises a route that dispatches to it. 🔴 **red** = a
+  first-party class no test reaches. ⚪ **grey (n/a)** = a node with no class behind it
+  — routes, tables, views, pages, channels, packages — which coverage can't score.
 - **LOC** — lines of code per class (find the big files).
 - **Degree** — how connected each node is (find the hubs).
 
 Turn the heatmap off to return to kind-colours.
+
+> **Coverage is a *reference* signal, not execution coverage.** Knoten never runs
+> Pest/PHPUnit or reads line/branch coverage. It reads `tests/` statically and asks
+> *"do the tests reach this class?"* — either by **naming** it, or by hitting a
+> **route** that dispatches to it (feature tests exercise a controller through its
+> route, never by naming the controller class). So green means *"a test touches this,"*
+> not *"every line runs under test"* — a test that imports a class but never asserts on
+> it still counts. Known blind spots: a controller reached only through a fully dynamic
+> URL (`$this->get($url)`) or a non-numeric literal slug can still read as untested.
+>
+> **LOC** is a class's source-line span (declaration to closing brace, blank lines and
+> comments included) — a faithful *relative* size, not logical lines of code.
+> **Degree** counts every edge touching a node across the *whole* graph — each of the
+> 11 Eloquent relationship kinds individually — regardless of which layers or links you
+> currently have hidden.
 
 ### Highlight orphans
 

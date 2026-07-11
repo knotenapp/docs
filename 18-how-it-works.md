@@ -104,8 +104,12 @@ generic node, so an established graph does not gain a hairball of incidental lin
 All the nodes and edges are merged into one `ProjectGraph`. Knoten then:
 
 - **de-duplicates** by id (a graph id must be unique so the UI can key on it),
-- **tags coverage** — a separate pass over `tests/` counts how many test files
-  reference each class, producing the "tested ×N" signal,
+- **tags coverage** — a separate pass over `tests/` records which test files
+  reference each class (by name) and which routes they exercise (by route name or
+  URI). A class earns "tested ×N" from direct references, and a controller/component
+  inherits "route-tested ×N" from the routes that dispatch to it; a first-party class
+  nothing reaches is tagged untested. It is a *reference* signal, not execution
+  coverage,
 - **assigns groups** — module / app / package / vendor (see
   [chapter 1](/introduction#grouping)),
 - **marks scheduled** commands/jobs (from the scheduler in `Kernel.php`,

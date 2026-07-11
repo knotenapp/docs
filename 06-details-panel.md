@@ -60,7 +60,9 @@ A row of context badges when relevant, such as:
 - **table:** — the table a model maps to,
 - **lines of code**,
 - **Laravel package** — a package that ships a service provider,
-- **tested ×N** — how many test files reference it,
+- **tested ×N** — test files that name this class directly; **route-tested ×N** —
+  test files that exercise a route dispatching to it (how controllers earn coverage);
+  or **untested** — a first-party class no test reaches,
 - **Scheduled** (and its cadence, e.g. `daily`) — for commands/jobs on the scheduler,
 - **inferred** — the node was resolved by convention, not proven.
 

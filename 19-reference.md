@@ -167,7 +167,8 @@ Notes:
 - Node `meta` varies by kind — a model carries `table`, `fillable`, `casts`, `scopes`,
   `relationshipCount`, `traits`; a table carries `columns`, `columnCount`, `migrations`;
   a route carries `httpMethods`, `uri`, `action`; a package carries `isLaravelPackage`.
-  Common meta includes `loc`, `methods`, `group`/`groupKind`, `testedBy`, `scheduled`,
+  Common meta includes `loc`, `methods`, `group`/`groupKind`, `testedBy`
+  (plus `routeTestedBy` on route-covered controllers/components), `scheduled`,
   and (always) `confidence`.
 - Edge `sites` gives the exact `method` + `line` (+ visibility) where the relationship
   originates — this is what powers "jump to the offending line" in checks and method flow.
