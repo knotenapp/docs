@@ -73,9 +73,10 @@ hidden. Grouping is explained in [chapter 1](/introduction#grouping).
 ## Links — showing and hiding edge kinds
 
 The **Links** section lists every *kind of relationship* in the graph with a count —
-Relationships, Foreign keys, Routes, Injects, Queries, Model ↔ table, Package deps,
-Renders, Dispatches, Sends, Throws, Policy checks, Middleware, and so on. Click a link
-category to hide or show those edges. (The eleven Eloquent relationship kinds —
+Relationships, Foreign keys, Routes, Injects, Container resolves, Bindings, Queries,
+Config reads, Model ↔ table, Package deps, Renders, View includes, Embedded components,
+Dispatches, Job chains, Sends, Throws, Policy checks, Middleware, and so on. Click a
+link category to hide or show those edges. (The eleven Eloquent relationship kinds —
 `hasMany`, `belongsTo`, etc. — collapse into one **Relationships** toggle.)
 
 At the bottom of this section is an **Edge labels** toggle to turn the text labels on

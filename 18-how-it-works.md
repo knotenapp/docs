@@ -86,18 +86,23 @@ fall into a few families:
   is why a package or module shows *all* of its files, not just the recognisable Laravel
   archetypes.
 - **Non-class producers** — routes (parsed from `routes/*.php`, including
-  `Route::resource()` expansion and route groups), tables (from schema), packages (from
-  `composer.json`/`.lock`), frontend pages and Blade/Volt views, and broadcast channels.
+  `Route::resource()` expansion and route groups, tagged with their API surface and
+  version), tables (from schema, keyed by connection), packages (from
+  `composer.json`/`.lock`), frontend pages and Blade/Volt views, config/env keys read
+  from code, and broadcast channels.
 
 **Edge producers** (how nodes connect) — inheritance/implements/uses-trait, constructor
 injection (`injects`), model↔table (`maps-to`), controller/service→table (`queries`,
 bridged through the model a class references), route→controller (`routes-to`),
 route→middleware, Eloquent relationships, foreign keys, validation, resource
-transforms, job dispatch, event dispatch/handling, notification/mail sends, exception
-throws, policy authorization (from `$this->authorize('update', Post::class)` and
-`->can()`/`can:` route guards), observer/model, cast usage, factory→model,
-package dependency, and loose method-body references (kept only where they touch a
-generic node, so an established graph does not gain a hairball of incidental links).
+transforms, job dispatch, ordered job chains (`chains`), event dispatch/handling,
+notification/mail sends, exception throws, policy authorization (from
+`$this->authorize('update', Post::class)` and `->can()`/`can:` route guards),
+observer/model, cast usage, factory→model, package dependency, container resolutions
+(`resolves`) and abstract→concrete bindings (`binds`), Blade composition — view
+includes (`includes`) and embedded components (`embeds`), config/env reads (`reads`),
+and loose method-body references (kept only where they touch a generic node, so an
+established graph does not gain a hairball of incidental links).
 
 ### 4. Assembly
 

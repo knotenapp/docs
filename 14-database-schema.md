@@ -50,6 +50,18 @@ This means:
 Each table node shows its columns (name, type, nullable) and the migrations that
 defined it, in the details panel.
 
+## Multi-tenant connections
+
+Tables are keyed by **connection *and* name**, so a `users` table on a landlord
+connection and one on a tenant connection stay two distinct nodes instead of
+collapsing into one. Knoten picks up a non-default connection from a migration's
+`protected $connection = 'tenant'` property or a `Schema::connection('tenant')->create(...)`
+call, and from a model's `$connection`; the model then maps to the table on *its*
+connection, and foreign keys resolve within it. Default-connection tables are
+unchanged (`table:users`); a pinned connection is shown as a badge on the table node.
+(A connection built dynamically — `Schema::connection(config('...'))` — can't be
+resolved to a name, so those tables stay on the default.)
+
 ## Reading from the live database (opt-in)
 
 Toggle **Live database** on to introspect your project's **real database** instead.

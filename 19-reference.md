@@ -25,6 +25,7 @@ rule selector's `kind` field.
 | `service` | Service | An application-layer class, usually injected into controllers. |
 | `route` | Route | A URL endpoint mapped to a controller action. |
 | `package` | Package | A third-party Composer package your code depends on. |
+| `config` | Config key | A config or env key read from code (`config('x')`, `env('X')`); reverse-trace it for a setting's blast radius. |
 | `request` | Form request | Validates incoming data before a controller runs. |
 | `resource` | API resource | Shapes a model into the JSON a controller returns. |
 | `job` | Job | A queued background job, dispatched from controllers or services. |
@@ -33,7 +34,7 @@ rule selector's `kind` field.
 | `middleware` | Middleware | Guards routes before they reach a controller. |
 | `action` | Action | A single-purpose action class, invoked by controllers or jobs. |
 | `component` | Livewire component | Handles requests and renders a Blade view (includes Volt single-file components). |
-| `view` | Blade view | A Blade view rendered by a Livewire component. |
+| `view` | Blade view | A Blade view rendered by a controller or Livewire component, composing other views and components. |
 | `provider` | Service provider | Registers a module or package: its routes, views, and bindings. |
 | `command` | Console command | An Artisan console command. |
 | `event` | Event | Broadcast when something happens, handled by its listeners. |
@@ -66,14 +67,20 @@ list. In the filter rail's **Links** section these are grouped under friendly la
 |--------|---------------------------|-------------|
 | `routes-to` | A route points to the controller action / component that handles it | Routes |
 | `injects` | A class receives another via typed constructor injection | Injects |
+| `resolves` | Code pulls a class out of the container (`app(X::class)`, `make`, `resolve`) | Container resolves |
+| `binds` | A provider binds an abstract to its concrete implementation | Bindings |
 | `queries` | Code reads/writes a table (via a referenced model) | Queries |
+| `reads` | Code reads a config/env key | Config reads |
 | `maps-to` | A model maps to its backing table | Model ↔ table |
 | `depends-on` | A first-party class depends on a Composer package | Package deps |
 | `uses-middleware` | A route passes through middleware | Middleware |
 | `validates-with` | A controller validates with a form request | Validation |
 | `transforms` | Code shapes its response with an API resource | Resources |
 | `renders` | A controller/component renders a page or Blade view | Renders |
+| `includes` | A Blade view includes another view (`@include`/`@extends`) | View includes |
+| `embeds` | A Blade view embeds a Livewire/Blade component (`<livewire:…>`, `<x-…>`) | Embedded components |
 | `dispatches` | Code dispatches a job | Dispatches |
+| `chains` | A job runs after another in a dispatched chain (`Bus::chain`) | Job chains |
 | `runs` | Code runs an action | Runs |
 | `sends` | Code sends a notification or mailable | Sends |
 | `throws` | Code/request throws an exception | Throws |
@@ -164,9 +171,11 @@ The graph exported via **Export as JSON** ([chapter 10](/exporting)) or
 
 Notes:
 
-- Node `meta` varies by kind — a model carries `table`, `fillable`, `casts`, `scopes`,
-  `relationshipCount`, `traits`; a table carries `columns`, `columnCount`, `migrations`;
-  a route carries `httpMethods`, `uri`, `action`; a package carries `isLaravelPackage`.
+- Node `meta` varies by kind — a model carries `table`, `connection`, `fillable`,
+  `casts`, `scopes`, `relationshipCount`, `traits`; a table carries `columns`,
+  `columnCount`, `migrations`, `connection`; a route carries `httpMethods`, `uri`,
+  `action`, `api`, `apiVersion`; a resource carries `fields` (its `toArray()` shape);
+  a config key carries `source` (`config`/`env`); a package carries `isLaravelPackage`.
   Common meta includes `loc`, `methods`, `group`/`groupKind`, `testedBy`
   (plus `routeTestedBy` on route-covered controllers/components), `scheduled`,
   and (always) `confidence`.

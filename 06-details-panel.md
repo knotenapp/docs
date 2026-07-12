@@ -60,6 +60,8 @@ A row of context badges when relevant, such as:
 - **table:** — the table a model maps to,
 - **lines of code**,
 - **Laravel package** — a package that ships a service provider,
+- **API** (with a version like **API v1**) — a route on the app's API surface,
+- a **connection** name — a table on a non-default database connection (multi-tenant),
 - **tested ×N** — test files that name this class directly; **route-tested ×N** —
   test files that exercise a route dispatching to it (how controllers earn coverage);
   or **untested** — a first-party class no test reaches,
