@@ -73,6 +73,11 @@ Key facts:
 
 - **Supported engines:** SQLite, MySQL/MariaDB, and PostgreSQL. Other drivers are not
   introspected.
+- **Local only, for safety:** the automatic `.env` connection is made *only* to a
+  **SQLite file** or a **loopback host** (`127.0.0.1` / `localhost` / `::1`). A project
+  whose `.env` points at a **remote** host falls back to migrations — Knoten never
+  silently connects across the network from a `.env` it just read. To check a remote
+  database on purpose, use **Check remote drift** (see below).
 - **Read-only and isolated:** the connection is registered under a throwaway name and
   purged afterwards, so it never leaks into Knoten's own configuration. Network engines
   use a short connection timeout.
@@ -105,14 +110,27 @@ that never became a migration, or a shared-database surprise.
 > Column *type* differences are intentionally left out for now, because database type
 > names rarely match Blueprint method names exactly and would produce noise.
 
-## Which source should I use?
+### Check remote drift
+
+Because the automatic live-database read is local-only, remote databases are checked
+through a deliberate, one-off action. **Check remote drift** opens a modal where you
+enter the connection by hand — driver (MySQL/MariaDB or PostgreSQL), host, port,
+database, username, password. Knoten connects **once**, reads the remote schema, diffs
+it against the project's migrations, and shows the same drift report in the modal
+(tables/columns only-in-database vs only-in-migrations), or an "in sync" confirmation.
+
+The connection is transient — used for that single read and immediately purged — and
+the **credentials are never stored**. This is the safe way to answer "does what's
+deployed in staging/production still match our migrations?" without Knoten ever
+connecting to a remote host on its own.
 
 | Situation | Source |
 |-----------|--------|
 | Exploring a project you cannot or should not connect to | **Migrations** (default) |
 | Sharing a snapshot / running in CI | **Migrations** — deterministic, no credentials |
-| Auditing what is *actually* deployed | **Live database** |
-| Hunting un-run migrations or manual schema edits | **Live database** (read the drift) |
+| Auditing a local database | **Live database** |
+| Hunting un-run migrations or manual schema edits (local) | **Live database** (read the drift) |
+| Checking a remote/staging/production database against migrations | **Check remote drift** |
 
 For most work the default migration replay is what you want. Reach for the live
 database when the question is specifically "what does the real database look like, and

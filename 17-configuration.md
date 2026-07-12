@@ -66,7 +66,12 @@ path, regardless of the roots.
 
 ### `KNOTEN_PROJECT_ROOTS`
 
-Comma-separated project-discovery roots (see above).
+Comma-separated project-discovery roots (see above). These roots — together with the
+projects you have opened (the recent list) — also **scope the file actions** Knoten
+performs on your behalf: revealing/opening a file, scaffolding CI files, and editing a
+`knoten.php` are only allowed inside a recent or configured project. A path outside them
+is refused, so an unauthenticated request can't touch arbitrary locations on disk. In
+normal use this is invisible (opening a project adds it to the recent list).
 
 ### `KNOTEN_STORAGE_PATH`
 
