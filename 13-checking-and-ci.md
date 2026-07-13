@@ -14,7 +14,7 @@ app while you explore, or in CI to block a merge that breaks a boundary.
 
 ## Checking in the app
 
-Click **Check** in the filter rail. Knoten runs your project's `knoten.php` rules
+Click **Check architecture** in the filter rail. Knoten runs your project's `knoten.php` rules
 against the current graph and reports the result:
 
 - **No rules file yet?** Instead of an error, Knoten steers you to set up a CI gate or

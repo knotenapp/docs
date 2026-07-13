@@ -69,7 +69,7 @@ when you want a preset as a starting point rather than a subscription.
 
 ## Managing presets from the app (no terminal)
 
-Open **Rule presets** from the filter rail. The dialog lists every bundled preset with
+Open the **Presets** tile in the filter rail. The dialog lists every bundled preset with
 its title, description, and rule count, and for each one you can:
 
 - **Enable / disable** it with the checkbox — this edits your project's `knoten.php`
@@ -115,9 +115,9 @@ your config as code and correctly ignores commented-out examples like
 
 ## Adopting presets — a good path
 
-1. Open **Rule presets**, expand `laravel-layers`, and read what it enforces.
+1. Open **Presets**, expand `laravel-layers`, and read what it enforces.
 2. **Enable** it. If your project has no `knoten.php`, one is created for you.
-3. Run a **Check** ([chapter 13](/checking-and-ci)) to see where you already
+3. Run **Check architecture** ([chapter 13](/checking-and-ci)) to see where you already
    comply and where you do not.
 4. If a rule is too strict for your project, **copy** the preset and edit the offending
    rule (add a `confidence => 'high'` filter, narrow a selector, or remove it).

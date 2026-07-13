@@ -113,9 +113,10 @@ that never became a migration, or a shared-database surprise.
 ### Check remote drift
 
 Because the automatic live-database read is local-only, remote databases are checked
-through a deliberate, one-off action. **Check remote drift** opens a modal where you
-enter the connection by hand — driver (MySQL/MariaDB or PostgreSQL), host, port,
-database, username, password. Knoten connects **once**, reads the remote schema, diffs
+through a deliberate, one-off action. The **Drift** tile in the filter rail opens the
+**Check remote drift** modal, where you enter the connection by hand — driver
+(MySQL/MariaDB or PostgreSQL), host, port, database, username, password. Knoten
+connects **once**, reads the remote schema, diffs
 it against the project's migrations, and shows the same drift report in the modal
 (tables/columns only-in-database vs only-in-migrations), or an "in sync" confirmation.
 
