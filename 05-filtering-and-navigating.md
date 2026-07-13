@@ -54,13 +54,14 @@ selects every controller.
 
 **Two ways to search — Filter vs. Highlight**
 
-A toggle under the box decides what happens to the nodes that *don't* match:
+A toggle under the box picks how much you see around the matches:
 
-- **Filter** (the default) — trims the graph down to just the matches. Best for
+- **Filter** (the default) — trims the graph down to *just* the matches. Best for
   decluttering to one area.
-- **Highlight** — keeps the whole graph and **spotlights the matches**, dimming
-  everything else. Best for finding something *in context* — where it sits and what
-  it connects to — without losing the surrounding architecture.
+- **Highlight** — shows each match together with the nodes it **directly connects
+  to**, then spotlights the matches and dims those neighbours, framing just that
+  slice. Best for seeing a match *in context* — what it wires into — instead of
+  losing it as a speck in the full graph.
 
 **Jumping & shortcuts**
 
