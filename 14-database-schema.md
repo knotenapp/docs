@@ -102,9 +102,34 @@ Knoten computes and surfaces the **drift** — the high-signal difference betwee
   migrations).
 - **Column differences per table** — columns present in one but not the other.
 
-Drift appears in the **Insights** panel (a "Schema drift" section) and on individual
-table nodes. It is a fast way to catch a migration nobody ran, a manual `ALTER TABLE`
-that never became a migration, or a shared-database surprise.
+Drift appears in the **Insights** panel (a "Schema drift" section), on individual table
+nodes, and in the **Check remote drift** modal (below). It is a fast way to catch a
+migration nobody ran, a manual `ALTER TABLE` that never became a migration, or a
+shared-database surprise.
+
+### Reading the drift report
+
+The report groups the differences so the real signal stands out from the noise:
+
+- A **summary** line — how many tables are only-in-migrations, only-in-DB, and have
+  column differences — so you grasp the shape before scrolling.
+- **Missing from the database** (migrated but absent — usually the real, actionable
+  drift) is shown first and open; **Only in the database** (manual changes and packages)
+  is collapsed. Each group is collapsible and counted.
+- **Package & framework tables** (`activity_log`, `jobs`, `sessions`, `telescope_*`, …)
+  are grouped and muted: their migrations live in `vendor/`, which the replay doesn't
+  scan, so they *always* look DB-only — expected, not real drift.
+- A **"widespread columns"** callout: when the same column shows up only-in-DB across
+  many tables (say `facility_id` on 40 tables), it's almost certainly added by a shared
+  macro or helper the migration reader can't expand — flagged once as a likely false
+  positive instead of 40 separate rows.
+
+Controls on the report:
+
+- **Filter** the list by table or column name.
+- **Sort** by name, or by most-differing-columns first.
+- **Copy** the whole report as Markdown, to drop into a PR or issue.
+- **Click a table** (in the Insights panel) to select and frame its node on the canvas.
 
 > Drift compares table and column *presence* — the high-signal, low-noise part.
 > Column *type* differences are intentionally left out for now, because database type
@@ -123,7 +148,23 @@ it against the project's migrations, and shows the same drift report in the moda
 The connection is transient — used for that single read and immediately purged — and
 the **credentials are never stored**. This is the safe way to answer "does what's
 deployed in staging/production still match our migrations?" without Knoten ever
-connecting to a remote host on its own.
+connecting to a remote host on its own. Knoten waits up to **10 seconds** for a remote
+connection before giving up.
+
+> **Can't connect? Remote MySQL is usually blocked.** Managed and shared hosts firewall
+> port 3306 from the internet by default, so a direct connection often fails with a
+> `[2002] Operation timed out` error. The reliable, safe way in is an **SSH tunnel** —
+> forward the remote database port to your machine and point Knoten at the local end:
+>
+> ```bash
+> ssh -L 3307:127.0.0.1:3306 you@your-server
+> ```
+>
+> Then connect with **Host `127.0.0.1`, Port `3307`** — the tunnel forwards to the remote
+> database, which never has to be exposed publicly. (The alternative — enabling "Remote
+> MySQL" and whitelisting your IP in the host's control panel — opens 3306 to the
+> internet and is less safe.) A quick `nc -vz your-server 3306` tells you whether the
+> port is reachable at all.
 
 | Situation | Source |
 |-----------|--------|
