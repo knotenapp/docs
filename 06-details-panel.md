@@ -114,8 +114,8 @@ powerful features, covered in full in [chapter 7, Traces](/traces). Depending on
 the node kind you may see:
 
 - **Explore methods** — open the class on the canvas to read each method's flow,
-  with a per-method effects summary and calls you can follow into
-  ([chapter 8](/method-flow)).
+  with a per-method effects summary, an unguarded-write flag, and calls you can
+  follow into ([chapter 8](/method-flow)).
 - **Trace this request** — follow a request from a route to the database.
 - **Trace dependencies** — everything this node reaches downstream.
 - **Trace impact** — everything that depends on this node (blast radius).

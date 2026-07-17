@@ -1,6 +1,6 @@
 ---
 title: Method Flow
-description: Drilling into a class to read each method as plain-language, branch-aware steps — with a side-effects summary and navigable calls.
+description: Drilling into a class to read each method as plain-language, branch-aware steps — with a side-effects summary, an unguarded-write flag, and navigable calls.
 section: Using the App
 order: 8
 slug: method-flow
@@ -42,6 +42,34 @@ So a controller action might read **🛡 1 · ✏️ Post · ⚡ 1** — one gua
 dispatches one job — without you opening a single step. The tally covers the whole
 method body, including steps nested inside branches, loops, and transactions.
 
+## Unguarded state changes
+
+Alongside the effect chips, a method may show an amber **⚠ unguarded** marker. It
+flags a real security smell: a **route-reachable controller method that changes state
+— writes, dispatches, or sends — with nothing authorizing it.**
+
+Knoten only raises it when *no* authorization protects the method, checked across its
+whole inbound chain from the graph:
+
+- an in-body check — `$this->authorize(...)`, `$user->can(...)`, `Gate::allows(...)`;
+- the route — a `can:` on the route, or a middleware that itself checks a policy;
+- a **form request** whose `authorize()` checks a policy.
+
+So a `store()` guarded by a `StorePostRequest`, a `can:create,post` route, or an
+in-body `authorize()` is **not** flagged — but a `destroy()` wired to a route that
+deletes a record with none of the above **is**. Only methods a route actually reaches
+are considered, so services, jobs, and internal helpers — which legitimately have no
+request authorization — never light up.
+
+This is deliberately an **authorization** signal, not a validation one: a method that
+validates its input (a form request with only `rules()`) but authorizes nobody is
+still flagged. Two known blind spots, worth keeping in mind before trusting it
+absolutely: authorization applied in a controller **constructor**
+(`$this->middleware('can:…')` or `authorizeResource()`) is attributed to the
+constructor, not the action; and a route's `middleware()` declared via Laravel 11's
+`HasMiddleware` interface isn't yet read as route middleware. Both can cause a false
+"unguarded" on an otherwise-protected method.
+
 ## Which methods are shown
 
 Every regular method is explorable, at **any visibility** — public, protected, *and*
@@ -77,8 +105,10 @@ Conditions and plain values read as language too, rather than raw code:
 - `$start = $range[0]` → **"$start = $range[0]"** (a plain assignment, stated as one)
 - `$post = Post::create(...)` → **"Create a Post (as $post)"** (an action assignment)
 
-Control flow is preserved and **indented under a nesting rail**, so the shape of the
-logic is visible — an `if` body and its `Otherwise` body read as contained blocks:
+Control flow is preserved and **indented under a nesting guide**, so the shape of the
+logic is visible — an `if` body and its `Otherwise` body read as contained blocks.
+(The indent is capped a few levels deep so a deep call tree doesn't march off the
+card; the connecting edges carry the nesting from there.)
 
 - `if / elseif / else` → **"If …:" / "Otherwise if …:" / "Otherwise:"**
 - `foreach` → **"For $item in …:"**
@@ -132,8 +162,9 @@ no affordance — Knoten never guesses.
   takes you to the exact method — and the exact step — where the forbidden dependency
   happens (see [chapter 13](/checking-and-ci)). The floating check overlay can
   jump you straight into the offending method's flow.
-- **Auditing authorization:** the guard chip (and the guard steps) show at a glance
-  whether a method actually calls `authorize()`/`validate()` and against what.
+- **Auditing authorization:** the **⚠ unguarded** marker calls out state-changing
+  actions that nothing authorizes, and the guard chip (and guard steps) show at a
+  glance whether a method actually checks permission, and against what.
 
 ## Jumping to the real code
 
