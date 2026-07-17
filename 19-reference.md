@@ -195,7 +195,8 @@ build against it works everywhere.
 - **Confidence** — how sure the analysis is (`high` / `inferred` / `dynamic`).
 - **Group** — the cluster a node belongs to (module / app / package / vendor).
 - **Trace** — a walk over the graph answering a question (request, impact, etc.).
-- **Method flow** — a class's method rendered as plain-language steps.
+- **Method flow** — a class's method rendered as plain-language steps, with a
+  side-effects summary and calls you can follow into a nested call tree.
 - **Context** — a user-drawn boundary around nodes (annotation layer).
 - **Note** — a user's sticky note pinned to the canvas (annotation layer).
 - **Hotspot** — one of the most-connected nodes.
