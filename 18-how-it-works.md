@@ -86,26 +86,35 @@ fall into a few families:
   is why a package or module shows *all* of its files, not just the recognisable Laravel
   archetypes.
 - **Non-class producers** — routes (parsed from `routes/*.php`, including
-  `Route::resource()` expansion and route groups), tables (from schema), packages (from
-  `composer.json`/`.lock`), frontend pages and Blade/Volt views, and broadcast channels.
+  `Route::resource()` expansion and route groups, tagged with their API surface and
+  version), tables (from schema, keyed by connection), packages (from
+  `composer.json`/`.lock`), frontend pages and Blade/Volt views, config/env keys read
+  from code, and broadcast channels.
 
 **Edge producers** (how nodes connect) — inheritance/implements/uses-trait, constructor
 injection (`injects`), model↔table (`maps-to`), controller/service→table (`queries`,
 bridged through the model a class references), route→controller (`routes-to`),
 route→middleware, Eloquent relationships, foreign keys, validation, resource
-transforms, job dispatch, event dispatch/handling, notification/mail sends, exception
-throws, policy authorization (from `$this->authorize('update', Post::class)` and
-`->can()`/`can:` route guards), observer/model, cast usage, factory→model,
-package dependency, and loose method-body references (kept only where they touch a
-generic node, so an established graph does not gain a hairball of incidental links).
+transforms, job dispatch, ordered job chains (`chains`), event dispatch/handling,
+notification/mail sends, exception throws, policy authorization (from
+`$this->authorize('update', Post::class)` and `->can()`/`can:` route guards),
+observer/model, cast usage, factory→model, package dependency, container resolutions
+(`resolves`) and abstract→concrete bindings (`binds`), Blade composition — view
+includes (`includes`) and embedded components (`embeds`), config/env reads (`reads`),
+and loose method-body references (kept only where they touch a generic node, so an
+established graph does not gain a hairball of incidental links).
 
 ### 4. Assembly
 
 All the nodes and edges are merged into one `ProjectGraph`. Knoten then:
 
 - **de-duplicates** by id (a graph id must be unique so the UI can key on it),
-- **tags coverage** — a separate pass over `tests/` counts how many test files
-  reference each class, producing the "tested ×N" signal,
+- **tags coverage** — a separate pass over `tests/` records which test files
+  reference each class (by name) and which routes they exercise (by route name or
+  URI). A class earns "tested ×N" from direct references, and a controller/component
+  inherits "route-tested ×N" from the routes that dispatch to it; a first-party class
+  nothing reaches is tagged untested. It is a *reference* signal, not execution
+  coverage,
 - **assigns groups** — module / app / package / vendor (see
   [chapter 1](/introduction#grouping)),
 - **marks scheduled** commands/jobs (from the scheduler in `Kernel.php`,

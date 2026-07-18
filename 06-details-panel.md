@@ -60,7 +60,11 @@ A row of context badges when relevant, such as:
 - **table:** — the table a model maps to,
 - **lines of code**,
 - **Laravel package** — a package that ships a service provider,
-- **tested ×N** — how many test files reference it,
+- **API** (with a version like **API v1**) — a route on the app's API surface,
+- a **connection** name — a table on a non-default database connection (multi-tenant),
+- **tested ×N** — test files that name this class directly; **route-tested ×N** —
+  test files that exercise a route dispatching to it (how controllers earn coverage);
+  or **untested** — a first-party class no test reaches,
 - **Scheduled** (and its cadence, e.g. `daily`) — for commands/jobs on the scheduler,
 - **inferred** — the node was resolved by convention, not proven.
 
@@ -109,8 +113,9 @@ A set of buttons that launch analyses on the canvas — this is one of Knoten's 
 powerful features, covered in full in [chapter 7, Traces](/traces). Depending on
 the node kind you may see:
 
-- **Explore methods** — open the class on the canvas to read each method's flow
-  ([chapter 8](/method-flow)).
+- **Explore methods** — open the class on the canvas to read each method's flow,
+  with a per-method effects summary, an unguarded-write flag, and calls you can
+  follow into ([chapter 8](/method-flow)).
 - **Trace this request** — follow a request from a route to the database.
 - **Trace dependencies** — everything this node reaches downstream.
 - **Trace impact** — everything that depends on this node (blast radius).
